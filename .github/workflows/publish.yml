@@ -32,8 +32,10 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Build and publish package
         run: |
-          cd $GITHUB_WORKSPACE
           npm install
-          npm run-script ng build-prod
+          npm run-script build-prod
           cd dist/snacks-entity-angular
-          npm publish
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_ACCESSTOKEN }}
+          
