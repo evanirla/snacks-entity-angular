@@ -34,6 +34,6 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           npm install
-          npm run-script ng build --prod
+          npm run-script ng build-prod
           cd dist/snacks-entity-angular
           npm publish
