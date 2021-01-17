@@ -33,8 +33,6 @@ jobs:
       - name: Build and publish package
         run: |
           npm install
-          npm run-script build-prod
-          cd dist/snacks-entity-angular
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_ACCESSTOKEN }}
