@@ -1,30 +1,29 @@
 import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { IEntityModel } from './entity-model.interface';
 import { IEntityService } from './entity-service.interface';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-export abstract class BaseEntityService<TModel extends IEntityModel> implements IEntityService<TModel> {
+export abstract class BaseEntityService<TEntity> implements IEntityService<TEntity> {
     constructor(
         protected http: HttpClient,
         protected route: string) { }
 
-    getOne(key: any): Observable<TModel> {
-        return this.http.get<TModel>(`${this.route}/${key}`);
+    getOne(key: any): Observable<TEntity> {
+        return this.http.get<TEntity>(`${this.route}/${key}`);
     }
 
-    getMany(params?: {[param: string]: string}): Observable<TModel[]> {
-        return this.http.get<TModel[]>(this.route, {
+    getMany(params?: {[param: string]: string}): Observable<TEntity[]> {
+        return this.http.get<TEntity[]>(this.route, {
             params: params
         });
     }
 
-    post(model: TModel): Observable<TModel> {
-        return this.http.post<TModel>(this.route, model);
+    post(model: TEntity): Observable<TEntity> {
+        return this.http.post<TEntity>(this.route, model);
     }
 
-    patch(key: any, data: {}): Observable<TModel> {
-        return this.http.patch<TModel>(`${this.route}/${key}`, data);
+    patch(key: any, data: {}): Observable<TEntity> {
+        return this.http.patch<TEntity>(`${this.route}/${key}`, data);
     }
 
     delete(key: any): Observable<HttpResponse<object>> {
